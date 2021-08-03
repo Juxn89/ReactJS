@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test on <GiftGridItem /> Sould show the component 1`] = `
+<div
+  className="animate__animated animate__bounce animate__fadeIn"
+>
+  <img
+    alt="Un título"
+    src="https://localhost/algo.jpg"
+  />
+  <p>
+    Un título
+  </p>
+</div>
+`;
