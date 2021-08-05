@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test on GiftGrid Should show it correctly 1`] = `
+<Fragment>
+  <h3
+    className="animate__animated animate__bounce animate__fadeIn"
+  >
+    Makoto Shishio
+  </h3>
+  <p
+    className="animate__animated animate__bounce animate__flash"
+  >
+    Loading
+  </p>
+  <div
+    className="card-grid"
+  />
+</Fragment>
+`;

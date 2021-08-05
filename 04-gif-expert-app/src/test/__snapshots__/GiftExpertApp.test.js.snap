@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test on GiftExpertApp Should show a category list 1`] = `
+<Fragment>
+  <h2>
+    GiftExpertApp
+  </h2>
+  <AddCategory
+    setCategories={[Function]}
+  />
+  <hr />
+  <ol>
+    <GiftGrid
+      category="Samurai X"
+      key="Samurai X"
+    />
+    <GiftGrid
+      category="Makoto Shishio"
+      key="Makoto Shishio"
+    />
+  </ol>
+</Fragment>
+`;
+
+exports[`Test on GiftExpertApp Should show it correctly  1`] = `
+<Fragment>
+  <h2>
+    GiftExpertApp
+  </h2>
+  <AddCategory
+    setCategories={[Function]}
+  />
+  <hr />
+  <ol />
+</Fragment>
+`;
