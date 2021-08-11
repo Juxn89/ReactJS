@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './effect.css';
+import Message from './Message';
 
 const SimpleForm = () => {
     const [state, setState] = useState({
@@ -48,6 +49,8 @@ const SimpleForm = () => {
                        autoComplete="off"
                        onChange = { hanfleInputChange } />
             </div>
+
+            { (name === '123') && <Message/> }
         </>
     );
 }
