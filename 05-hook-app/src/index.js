@@ -1,5 +1,6 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ToDoApp from './components/08-useRedurec/ToDoApp';
 // import { Padre } from './components/07-tarea-memo/Padre';
 // import SimpleForm from './components/02-useEffect/SimpleForm';
 // import CounterWithCustomHook from './components/01-useState/CounterWithCustomHook';
@@ -12,9 +13,9 @@
 // import Memorize from './components/06-Memo/Memorize';
 // import CallbackHook from './components/06-Memo/CallbackHook';
 
-// ReactDOM.render(
-//   <Padre />,
-//   document.getElementById('root')
-// );
+ReactDOM.render(
+  <ToDoApp />,
+  document.getElementById('root')
+);
 
-import './components/08-useRedurec/intro-redurec';
+// import './components/08-useRedurec/intro-redurec';
