@@ -1,24 +1,52 @@
 import './style.css';
 
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import todoReducer from './todoReducer';
+import {useForm} from '../hooks/useForm';
+import ToDoList from './ToDoList';
+import ToDoAdd from './ToDoAdd';
 
-const initialState = [{
-        id: new Date().getTime(),
-        desc: 'Aprender React',
-        done: false
-    },
-    {
-        id: new Date().getTime(),
-        desc: 'Aprender Redux',
-        done: false
-    }
-];
+const init = () => {
+    return JSON.parse(localStorage.getItem('todos')) || [];
+    // return [
+    //     {
+    //         id: new Date().getTime(),
+    //         desc: 'Aprender React',
+    //         done: false
+    //     }
+    // ];
+}
 
 const ToDoApp = () => {
     
-    const [todos] = useReducer(todoReducer, initialState);
-    console.log(todos);
+    const [todos, dispatch] = useReducer(todoReducer, [], init);
+
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify(todos))
+    }, [todos]);
+
+    const handleDelete = (todoId) => {
+        const action = {
+            type: 'delete',
+            payload: todoId
+        }
+
+        dispatch(action);
+    }
+
+    const handleToggle = (todoId) => {
+        dispatch({
+            type: 'toggle',
+            payload: todoId
+        });
+    }
+
+    const handleAddToDO = (newTodo) => {
+        dispatch({
+            type: 'add',
+            payload: newTodo
+        });
+    }
 
     return(
         <>
@@ -28,26 +56,9 @@ const ToDoApp = () => {
             </div>
 
             <div className="row">
-                <h4>Agregar TODO</h4>
-                <hr/>
-                <form>
-                    <input type="text" name="description" placeholder="nombre..." autoComplete="off" className="form-control" />
-                    <button type="button" className="btn btn-success mt-2 mb-2 btn-block">Agregar...</button>
-                </form>
+                <ToDoAdd handleAddToDO={handleAddToDO}/>
             </div>
-
-            {
-                todos.map((todo, i) => (
-                    <div className="row">
-                        <div className="col-4">
-                            <p>{i+1}. {todo.desc}</p>
-                        </div>
-                        <div className="col-3">
-                            <button className="btn btn-outline-danger m-1">Borrar</button>
-                        </div>
-                    </div>
-                ))
-            }
+            <ToDoList todos={todos} handleDelete={ handleDelete } handleToggle={handleToggle}/>
         </>
     );
 }
