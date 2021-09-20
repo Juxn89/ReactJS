@@ -24,5 +24,6 @@ yarn-error.log*
 
 /src/tests/__snapshots__
 /src/tests/components/03-explamples/__snapshots__
-/src/tests/components/04-useRef/__snapshots__/RealExampleRef.test.js.snap
-/src/tests/components/08-useReducer/__snapshots__/TodoListItem.test.js.snap
+/src/tests/components/04-useRef/__snapshots__/
+/src/tests/components/08-useReducer/__snapshots__/
+src/tests/components/09-useContext/__snapshots__/
