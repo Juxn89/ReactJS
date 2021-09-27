@@ -9,7 +9,7 @@ import { Navbar } from '../components/ui/Navbar';
 const DashboardRoutes = () => {
     return (
         <>
-            <Navbar/>
+            <Navbar />
             <div>
                 <Switch>
                     <Route exact path="/dc" component={DCScreen}/>
