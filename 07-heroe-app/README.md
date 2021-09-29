@@ -24,3 +24,14 @@ Aquí quiero enfocarme en la funcionalidad de la aplicación suponiendo que esta
 6. Reducer
 
 Esta es una sección pequeña pero importante para trabajar las bases de la autenticación y protección de nuestra aplicación.
+
+## Sección 16
+**¿Qué veremos en esta sección?**
+1. Nuevos tipos de pruebas
+2. Pruebas en rutas privadas y públicas
+3. MemoryRouter
+4. Pruebas en nuestro DashboardRouter
+5. Pruebas en el AppRouter
+6. Simular URLs y segmentos
+7. Simular queryParams y queryStrings
+8. Recuerden que el objetivo de las pruebas, es ir probando cosas nuevas cada vez y tener un repertorio completo de diferentes casos.
