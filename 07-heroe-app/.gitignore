@@ -22,4 +22,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-/src/test/routers/__snapshots__/AppRouter.test.js.snap
+07-heroe-app/src/tests/routers/__snapshots__/
+
+*.snap

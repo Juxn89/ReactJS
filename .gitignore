@@ -11,4 +11,8 @@
 ./05-hook-app/src/tests/components/08-useReducer/__snapshots__/TodoListItem.test.js.snap
 
 ./07-heroe-app/node_modules
-./07-heroe-app/src/test/routers/__snapshots__/AppRouter.test.js.snap
+./07-heroe-app/src/test/routers/__snapshots__/
+
+./07-heroe-app/src/tests/routers/__snapshots__/
+
+*.snap
