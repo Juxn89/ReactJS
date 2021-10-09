@@ -1,6 +1,6 @@
 import React from "react";
-import { Redirect } from "react-router";
-import LoginScreen from "../../../07-heroe-app/src/components/login/LoginScreen";
+import { Redirect, Switch, Route } from "react-router-dom";
+import LoginScreen from "../components/auth/LoginScreen";
 import RegisterScreen from "../components/auth/RegisterScreen";
 
 const AuthRouter = () => {

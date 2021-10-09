@@ -1,6 +1,6 @@
 import React from "react";
-import { Route, Router, Switch, Redirect } from "react-router";
-import JournalApp from "../JournalApp";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import JournalScreen from "../components/journal/JournalScreen";
 import AuthRouter from "./AuthRouter";
 
 const AppRouter = () => {
@@ -9,7 +9,7 @@ const AppRouter = () => {
             <div>
                 <Switch>
                     <Route path='/auth' component={ AuthRouter } />
-                    <Route exact path='/' component={ JournalApp } />
+                    <Route exact path='/' component={ JournalScreen } />
                     <Redirect to="/auth/login"/>
                 </Switch>
             </div>
