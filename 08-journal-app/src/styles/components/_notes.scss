@@ -14,7 +14,9 @@
 }
 
 .notes__main-content {
-
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .notes__content {
