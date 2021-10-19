@@ -48,7 +48,7 @@ const RegisterScreen = () => {
             return false;
         }
 
-        if((password2 !== password2)) {
+        if((password !== password2)) {
             dispatch(setError('Password and confirm password are not equeal.'));
             return false;
         }
