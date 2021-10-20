@@ -21,6 +21,7 @@ Se agregan los siguientes módulo de **Node**
 - `npm install react-redux`.
 - `npm install firebase`.
 - `npm install validator`.
+- `npm install sweetalert2`.
 
 Tecnologías empleadas
 - Firebase
@@ -36,3 +37,12 @@ Tecnologías empleadas
 1. [redux-devtools-extension](https://github.com/zalmoxisus/redux-devtools-extension#usage)
 2. [Firebase](https://firebase.google.com/)
 3. [Firestore para SQL Developer by Fernando Herrera](https://www.youtube.com/playlist?list=PLCKuOXG0bPi29EkcAuVCln9ISbExcQk66)
+
+## Sección 21
+Esta sección está enfocada ahora en las entradas de nuestro diario, asegurándose de que grabe únicamente en el documento del usuario autenticado. En esta sección se abordan los siguientes temas:
+
+- CRUD hacia Firestore
+- Expandiendo nuestro estore añadiendo otros reducers
+- Seleccionar y subir archivos
+- Animaciones adicionales a nuestra aplicación
+- Limpieza en el logout
