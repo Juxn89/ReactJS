@@ -3,6 +3,7 @@ import { googleAuthProvider } from "../firebase/firebase-config";
 import { getAuth, signInWithPopup, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword } from 'firebase/auth';
 import { finishLoading, startLoading } from "./ui";
 import { async } from "@firebase/util";
+import Swal from 'sweetalert2';
 
 export const startLoginEmailPassword = (email, password) => {
     return (dispatch) => {
@@ -13,7 +14,12 @@ export const startLoginEmailPassword = (email, password) => {
        .then( ({user}) => {
            dispatch(login(user.uid, user.displayName));
        } )
-       .catch( err => console.error(err) )
+       .catch( error => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(error, errorCode, errorMessage);
+            Swal.fire('Error', errorMessage, 'error');
+       } )
        .finally(info => dispatch(finishLoading()));
     }
 }
