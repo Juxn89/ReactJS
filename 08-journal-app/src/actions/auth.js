@@ -2,7 +2,6 @@ import { type } from "../types/types";
 import { googleAuthProvider } from "../firebase/firebase-config";
 import { getAuth, signInWithPopup, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword } from 'firebase/auth';
 import { finishLoading, startLoading } from "./ui";
-import { async } from "@firebase/util";
 import Swal from 'sweetalert2';
 
 export const startLoginEmailPassword = (email, password) => {

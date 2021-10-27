@@ -5,7 +5,7 @@ import { PrivateRoute } from "./PrivateRoute";
 import React, { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import JournalScreen from "../components/journal/JournalScreen";
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import { PublicRoute } from "./PublicRoute";
 
 const AppRouter = () => {
@@ -30,7 +30,7 @@ const AppRouter = () => {
 
     if(checking) {
         return (
-            <h1>Espere...</h1>
+            <h1>Wait...</h1>
         );
     }
 
