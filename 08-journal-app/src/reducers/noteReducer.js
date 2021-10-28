@@ -7,13 +7,13 @@ const initialState = {
 
 export const noteReducer = (state = initialState, action) => {
     switch (action.type) {
-        case type.login:
+        case type.activeNote:
             return {
-                uid: action.payload.uid,
-                name: action.payload.displayName
-            } 
-        case type.logout:
-            return {};
+                ...state,
+                active: {
+                    ...action.payload
+                }
+            }
         default:
             return state;
     }
