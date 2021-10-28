@@ -7,6 +7,9 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import JournalScreen from "../components/journal/JournalScreen";
 import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import { PublicRoute } from "./PublicRoute";
+import { loadNotes } from "../helpers/loadNotes";
+import { db } from "../firebase/firebase-config";
+import { setNotes } from "../components/auth/notes";
 
 const AppRouter = () => {
 
@@ -16,10 +19,13 @@ const AppRouter = () => {
 
     useEffect( () => {
         const auth = getAuth();
-        onAuthStateChanged(auth, (user) => {
+        onAuthStateChanged(auth, async (user) => {
             if(user?.uid) {
                 dispatch(login(user.uid, user.displayName));
                 setIsLoggedIn(true);
+
+                const notes = await loadNotes(user.uid);
+                dispatch(setNotes(notes));
             }
             else
                 setIsLoggedIn(false);
