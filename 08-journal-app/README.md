@@ -22,6 +22,7 @@ Se agregan los siguientes módulo de **Node**
 - `npm install firebase`.
 - `npm install validator`.
 - `npm install sweetalert2`.
+- `npm install moment --save`.
 
 Tecnologías empleadas
 - Firebase
