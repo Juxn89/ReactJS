@@ -15,4 +15,6 @@
 
 ./07-heroe-app/src/tests/routers/__snapshots__/
 
+./09-calendar-app/node_modules
+
 *.snap
