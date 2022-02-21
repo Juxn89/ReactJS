@@ -2,6 +2,7 @@ import React from "react";
 import {Calendar, momentLocalizer} from 'react-big-calendar';
 import moment from 'moment';
 import { Navbar } from "../ui/Navbar";
+
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { messages } from "../../helpers/calendar-messages-es";
 
@@ -9,6 +10,9 @@ import 'moment/locale/es';
 import { CalendarEvent } from "./CalendarEvent";
 import { useState } from "react";
 import { CalendarModal } from "./CalendarModal";
+import { useDispatch } from "react-redux";
+import { uiOpenModal } from "../../actions/ui";
+
 moment.locale('es');
 
 const localizer = momentLocalizer(moment);
@@ -24,8 +28,12 @@ const events = [
 ];
 
 export const CalendarScreen = () => {
+    const dispatch = useDispatch();
+
     const onDoubleClick = (e) => {
-        console.log(e);
+        console.log('onDobleClick: ', e);
+        dispatch(uiOpenModal());
+
     }
 
     const onViewChange = (e) => {
