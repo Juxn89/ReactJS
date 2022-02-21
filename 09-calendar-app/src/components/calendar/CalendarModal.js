@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Modal from 'react-modal';
 import DateTimePicker from 'react-datetime-picker';
 import moment from 'moment';
+import Swal from 'sweetalert2'
 
 const customStyles = {
   content: {
@@ -21,8 +22,8 @@ const nowPlus1 = now.clone().add(1, 'hours');
 
 export const CalendarModal = () => {
   const [dateStart, setDateStart] = useState(now.toDate());
-
-  const [dateEnd, setDateEnd] = useState(nowPlus1);
+  const [dateEnd, setDateEnd] = useState(nowPlus1.toDate());
+  const [titleValid, setTitleValid] = useState(true);
 
   const [formValues, setFormValues] = useState({
     title: 'Evento',
@@ -31,7 +32,7 @@ export const CalendarModal = () => {
     end: nowPlus1.toDate()
   });
 
-  const {notes, title} = formValues;
+  const {notes, title, start, end} = formValues;
 
   const handleInputChange = ({target}) => {
     setFormValues({
@@ -67,13 +68,29 @@ export const CalendarModal = () => {
   const handleSubmitForm = (e) => {
     e.preventDefault();
     console.log('formValues: ', formValues);
+
+    const momentStart = moment(start);
+    const momentEnd = moment(end);
+
+    if(momentStart.isSameOrAfter(momentEnd)) {
+      return Swal.fire('Error', 'La fecha fin debe de ser mayor que la fecha de inicio.', 'error');
+    }
+
+    if(title.trim().length < 2) {
+      return setTitleValid(false);
+    }
+
+    setTitleValid(true);
+    closeModal();
   }
+
+  console.log('End: ' ,dateEnd);
   
   return (
     <Modal isOpen={true} /*onAfterOpen={afterOpenModal} onRequestClose={closeModal}*/ style={customStyles} className="modal" overlayClassName="modal-fondo" closeTimeoutMS={200}>
       <h1> Nuevo evento </h1>
       <hr />
-      <form className="container" onSubmit={handleEndDateChange}>
+      <form className="container" onSubmit={handleSubmitForm}>
 
           <div className="form-group">
               <label>Fecha y hora inicio</label>
@@ -82,7 +99,7 @@ export const CalendarModal = () => {
 
           <div className="form-group">
               <label>Fecha y hora fin</label>
-              <DateTimePicker onChange={handleEndDateChange} value={dateEnd} minDate={dateStart} />
+              <DateTimePicker onChange={handleEndDateChange} value={dateEnd} />
           </div>
 
           <hr />
@@ -90,7 +107,7 @@ export const CalendarModal = () => {
               <label>Titulo y notas</label>
               <input 
                   type="text" 
-                  className="form-control"
+                  className={`form-control ${!titleValid && 'is-invalid'}`}
                   placeholder="Título del evento"
                   name="title"
                   autoComplete="off"
