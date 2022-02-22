@@ -12,6 +12,8 @@ import { useState } from "react";
 import { CalendarModal } from "./CalendarModal";
 import { useDispatch } from "react-redux";
 import { uiOpenModal } from "../../actions/ui";
+import { eventSetActive } from "../../actions/events";
+import { AddNewFab } from "../ui/AddNewFab";
 
 moment.locale('es');
 
@@ -29,6 +31,11 @@ const events = [
 
 export const CalendarScreen = () => {
     const dispatch = useDispatch();
+
+    const onSelectEvent = (e) => {
+        console.log('onSelectEvent: ', e);
+        dispatch(eventSetActive(e));
+    }
 
     const onDoubleClick = (e) => {
         console.log('onDobleClick: ', e);
@@ -71,9 +78,11 @@ export const CalendarScreen = () => {
                 onDoubleClickEvent={onDoubleClick}
                 view={lastView}
                 components={{event: CalendarEvent}}
+                onSelectEvent = {onSelectEvent}
                 />
                 
             <CalendarModal/>
+            <AddNewFab/>
         </div>
     );
 }
