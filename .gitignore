@@ -17,4 +17,6 @@
 
 ./09-calendar-app/node_modules
 
+./10-calendar-backend/node_modules
+
 *.snap
