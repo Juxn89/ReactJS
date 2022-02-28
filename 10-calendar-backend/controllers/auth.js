@@ -23,9 +23,8 @@ const crearUsuario = async (req, res = response) => {
         user.password = bcrypt.hashSync(password, salt);
 
         await user.save();
-
         // JWT
-        const token = await createJWT(user.uid, user.name);
+        const token = await createJWT(user.id, user.name);
 
         res.status(201).json({
             ok: true,
@@ -68,11 +67,14 @@ const loginUsuario = async (req, res = response) => {
         }
 
         // JWT
+        const token = await createJWT(user.id, user.name);
+
         res.status(201).json({
             ok: true,
             msg: 'Ok',
             uid: user.id,
-            name: user.name
+            name: user.name,
+            token
         });
 
     } catch (error) {
@@ -84,10 +86,15 @@ const loginUsuario = async (req, res = response) => {
     }
 };
 
-const revalidarToken = (req, res = response) => {
+const revalidarToken = async (req, res = response) => {
+    const { uid, name } = req;
+
+    const token = await createJWT(uid, name);
+
     res.json({
         ok: true,
-        msg: 'registro'
+        msg: 'renew',
+        token
     });
 };
 
