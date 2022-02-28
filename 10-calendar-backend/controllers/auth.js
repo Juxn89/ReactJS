@@ -1,29 +1,87 @@
 const {response} = require('express');
-const { validationResult } = require('express-validator');
+const UserModel = require('../models/UserModel');
+const bcrypt = require('bcryptjs');
+const { createJWT } = require('../helpers/jwt');
 
+const crearUsuario = async (req, res = response) => {
+    const { email, password } = req.body;
+    
+    try {
+        let user = await UserModel.findOne({email});
 
+        if(user) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'A user already exits with this email.'
+            });
+        }
+        
+        user = new UserModel(req.body);
 
-const crearUsuario = (req, res = response) => {
-    const { name, email, password } = req.body;
+        // Encrypt password
+        const salt = bcrypt.genSaltSync();
+        user.password = bcrypt.hashSync(password, salt);
 
-    res.status(201).json({
-        ok: true,
-        msg: 'registro',
-        name,
-        email,
-        password
-    });
+        await user.save();
+
+        // JWT
+        const token = await createJWT(user.uid, user.name);
+
+        res.status(201).json({
+            ok: true,
+            msg: 'Ok',
+            uid: user.id,
+            name: user.name,
+            token
+
+        });      
+    } catch (error) {
+        console.log(error);
+
+        res.status(500).json({
+            ok: false,
+            msg: 'Please contact with the administrator'
+        }); 
+    }
 };
 
-const loginUsuario = (req, res = response) => {
+const loginUsuario = async (req, res = response) => {
     const { email, password } = req.body;
+    
+    try {
+        const user = await UserModel.findOne( { email } );
 
-    res.status(201).json({
-        ok: true,
-        msg: 'login',
-        email,
-        password
-    });
+        if(!user) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'Email or password incorrect'
+            });
+        }
+
+        const validPassword = bcrypt.compareSync(password, user.password);
+
+        if(!validPassword) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'Email or password incorrect'
+            });
+        }
+
+        // JWT
+        res.status(201).json({
+            ok: true,
+            msg: 'Ok',
+            uid: user.id,
+            name: user.name
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            ok: false,
+            msg: 'Please contact with the administrator'
+        });
+    }
 };
 
 const revalidarToken = (req, res = response) => {
