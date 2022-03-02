@@ -23,5 +23,5 @@ app.use('/api/events', require('./routes/events'));
 
 // Listening requests
 app.listen(process.env.PORT, () => {
-    console.log('Express server running...');
+    console.log(`Express server running on port ${process.env.PORT}...`);
 });
