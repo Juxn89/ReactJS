@@ -17,6 +17,9 @@ app.use(express.static('public'));
 // Read and parse body
 app.use(express.json());
 
+// Use CORS
+app.use(cors());
+
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/events', require('./routes/events'));
