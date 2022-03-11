@@ -59,9 +59,9 @@ export const startChecking = () => {
             }));
         }
         else {
-            const messageError = body.errors.errors[0].msg;
-            Swal.fire('Error', messageError, 'error');
-            dispatch(checkingFinish);
+            // const messageError = body.errors.errors[0].msg;
+            // Swal.fire('Error', messageError, 'error');
+            dispatch(checkingFinish());
         }
     }
 }
