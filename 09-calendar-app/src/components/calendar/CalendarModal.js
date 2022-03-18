@@ -5,7 +5,7 @@ import DateTimePicker from 'react-datetime-picker';
 import moment from 'moment';
 import Swal from 'sweetalert2'
 import { uiCloseModal } from '../../actions/ui';
-import { eventAddNew, eventClearActiveNote, eventUpdated } from '../../actions/events';
+import { eventClearActiveNote, eventStartAddNew, eventUpdated } from '../../actions/events';
 import { useEffect } from 'react';
 
 const customStyles = {
@@ -67,7 +67,7 @@ export const CalendarModal = () => {
   }
 
   const handleStartDateChange = (e) => {
-    console.log('Start date: ', e);
+    // console.log('Start date: ', e);
 
     setDateStart(e);
     setFormValues({
@@ -77,7 +77,7 @@ export const CalendarModal = () => {
   }
 
   const handleEndDateChange = (e) => {
-    console.log('End date: ', e);
+    // console.log('End date: ', e);
 
     setDateEnd(e);
     setFormValues({
@@ -102,14 +102,7 @@ export const CalendarModal = () => {
     }
 
     if(!activeEvent) {
-      dispatch(eventAddNew({
-        ...formValues,
-        id: new Date().getTime(),
-        user: {
-          id: '123',
-          name: 'Juan'
-        }
-      }));
+      dispatch(eventStartAddNew({ ...formValues }));
     }
     else {
       dispatch(eventUpdated({...formValues}));
@@ -119,7 +112,7 @@ export const CalendarModal = () => {
     closeModal();
   }
 
-  console.log('End: ' ,dateEnd);
+  // console.log('End: ' ,dateEnd);
   
   return (
     <Modal isOpen={ modalOpen } onRequestClose={closeModal}style={customStyles} className="modal" overlayClassName="modal-fondo" closeTimeoutMS={200}>
